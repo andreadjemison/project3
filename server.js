@@ -14,7 +14,7 @@ app.use('/client/public', express.static("public"))
 // app.set('view engine', 'jsx')
 
 // app.engine('jsx', reactViews.createEngine());
-
+// connect backend to frontend
 
 app.get('/',(req, res)=>{
     bookApi.allBooks(req.query.q)

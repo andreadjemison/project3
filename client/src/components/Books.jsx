@@ -52,7 +52,7 @@ class Books extends Component {
                     price: '',
                 },
                 isBookFormDisplayed: true,
-                books: BooksList
+                books: BooksList 
             })
         })
 
@@ -60,7 +60,7 @@ class Books extends Component {
 
   render() {
     return (
-      <div className="allbooks">
+      <div className="allbooks"> 
       <h1>All Books</h1>
       <div className="bookcontainer">
         {this.state.books.map(Book => {

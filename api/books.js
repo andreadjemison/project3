@@ -13,6 +13,8 @@ const books = new mongoose.Schema({
 
 let bookCollection = mongoose.model('Books', books)
 
+// book functions
+
 const allBooks = () => {
     return bookCollection.find()
 }
@@ -28,7 +30,7 @@ const updateBook = (book, id) => {
 const deleteBook = (id) => {
     return bookCollection.findByIdAndRemove(id)
 }
-module.exports ={
+module.exports = {
     allBooks,
     newBook,
     oneBook,
