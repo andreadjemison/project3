@@ -10,22 +10,47 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 // app.use(bodyParser)
 app.use('/client/public', express.static("public"))
-// app.use(express.static(`${__dirname}/client/build`))
-// app.set('view engine', 'jsx')
+app.use(express.static(`${__dirname}/client/build`))
 
-// app.engine('jsx', reactViews.createEngine());
-// connect backend to frontend
-
+// list of all books
 app.get('/',(req, res)=>{
     bookApi.allBooks(req.query.q)
     .then(books => {
       res.send(books);
     })
 })
+// add new book
+app.get('/new',(req, res)=>{
+    bookApi.newBook(req.body)
+    .then(() => {
+      res.redirect(`/`);
+    })
+})
+// show single book
+app.get('/:id',(req, res)=>{
+    bookApi.oneBook(req.params.id)
+    .then(onebook => {
+      res.send(onebook);
+    })
+})
+// update single book
+app.get('/:id',(req, res)=>{
+    bookApi.updateBook(req.params.id, req.body)
+    .then(update => {
+      res.send(update);
+    })
+})
+// delete single book
+app.get('/:id',(req, res)=>{
+    bookApi.deleteBook(req.params.id)
+    .then(deletebook => {
+      res.send(deletebook);
+    })
+})
 
-// app.get('/', (req, res) => {
-//     res.sendFile(`${__dirname}/client/public/index.html`)
-// })
+app.get('/', (req, res) => {
+    res.sendFile(`${__dirname}/client/public/index.html`)
+})
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{
