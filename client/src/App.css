@@ -1,12 +1,13 @@
 *{
   margin: 0;
 }
-.allbooks{
+.allbooks, .createnew{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
+  padding:30px;
 
 }
 form div{
@@ -19,12 +20,15 @@ button{
   
 }
 .navbar{
+  display:flex;
   background: purple;
   color: gold;
-  text-align: center;
+  justify-content: center;
+  height: 70px;
+  align-items: center;
 }
 .bookcontainer{
-  border:blue solid;
+  /* border:blue solid; */
   /* height: 30px;
   width: 50px; */
 }

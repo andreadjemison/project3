@@ -42,7 +42,7 @@ class Book extends Component {
     }
 
   componentDidMount = () => {
-    axios.get('/').then(res => {
+    axios.get('/books/:id').then(res => {
         this.setState({books: res.data})
     })
   }
@@ -62,7 +62,7 @@ class Book extends Component {
   Book = (e) => {
     e.preventDefault()
     axios
-        .post('/', {
+        .post('/books/:id', {
             name: this.state.newBook.name,
             description: this.state.newBook.description,
             image:  this.state.newBook.image,
