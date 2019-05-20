@@ -1,0 +1,30 @@
+*{
+  margin: 0;
+}
+.allbooks{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+
+}
+form div{
+  margin:10px;
+  text-align: center;
+}
+button{
+  text-align:center;
+  justify-content:center;
+  
+}
+.navbar{
+  background: purple;
+  color: gold;
+  text-align: center;
+}
+.bookcontainer{
+  border:blue solid;
+  /* height: 30px;
+  width: 50px; */
+}
