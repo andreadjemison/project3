@@ -2,12 +2,9 @@ const mongoose = require('../db/connection.js')
 
 const books = new mongoose.Schema({
     name: String,
-    author: String,
     description: String,
-    img: String,
-    genre: String,
-    pubdate: Date,
-    pages: Number,
+    image: String,
+    author: String,
     price: Number
 })
 
@@ -30,10 +27,14 @@ const updateBook = (book, id) => {
 const deleteBook = (id) => {
     return bookCollection.findByIdAndRemove(id)
 }
+const deleteAll = () => {
+    return bookCollection.deleteMany()
+}
 module.exports = {
     allBooks,
     newBook,
     oneBook,
     updateBook,
-    deleteBook
+    deleteBook,
+    deleteAll
 }
