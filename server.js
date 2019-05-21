@@ -9,7 +9,7 @@ const bookApi = require('./api/books')
 const booksroutes = express.Router()
 // let bookdb = require('./db/books')
 
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.use(logger('dev'))
@@ -22,70 +22,61 @@ app.use('/client/public', express.static("public"))
 
 
 // list of all books
-// app.get('/',(req, res)=>{
-//     bookApi.allBooks()
-//     .then(books => {
-//       res.send(books)
-//     })
-// })
-
-booksroutes.route('/').get((req, res)=> {
+booksroutes.route('/').get((req, res) => {
   bookApi.allBooks()
-  .then(books => {
-    res.json(books)
-  })
+    .then(books => {
+      res.json(books)
+    })
 })
 
 // add new book
-// booksroutes.route('/new').post((req, res)=>{
-//   let newbook = new Book(req.body)
-//     bookApi.newBook(newbook.save())
-//     .then(() => {
-//       res.redirect(`/`)
-//     })
-// })
-// show single book
-// app.get('/:id',(req, res)=>{
-//     bookApi.oneBook(req.params.id)
-//     .then(onebook => {
-//       res.send(onebook);
-//     })
-// })
-booksroutes.route('/:id').get((req, res)=> {
-  bookApi.oneBook(req.params.id)
-  .then(book => {
-    res.json(book)
-  })
+booksroutes.route('/new').post((req, res) => {
+  let newbook = new Book(req.body)
+  bookApi.newBook(newbook)
+    // newbook.save()
+    .then(book => {
+      res.json(book)
+    })
+
 })
+
+// show single book
+booksroutes.route('/:id').get((req, res) => {
+  bookApi.oneBook(req.params.id)
+    .then(onebook => {
+      res.json(onebook)
+    })
+})
+
 // update single book
-app.get('/:id',(req, res)=>{
-    bookApi.updateBook(req.params.id, req.body)
+app.get('/:id', (req, res) => {
+  bookApi.updateBook(req.params.id, req.body)
     .then(update => {
       res.send(update);
     })
 })
 
 // delete single book
-app.get('/:id',(req, res)=>{
-    bookApi.deleteBook(req.params.id)
+app.get('/:id', (req, res) => {
+  bookApi.deleteBook(req.params.id)
     .then(deletebook => {
       res.send(deletebook);
     })
 })
 
-app.get('*', (req, res) => {
-    res.sendFile(`${__dirname}/client/public/index.html`)
+// delete all book
+booksroutes.route('/').delete((req, res) => {
+  bookApi.deleteAll(req.params.id)
+    .then(deletebook => {
+      res.json(deletebook);
+    })
 })
-// const eraseDatabaseOnSync = true
-// bookdb().then(async ()=>{
-//   if (eraseDatabaseOnSync) {
-//     await Promise.all([
-//       bookApi.deleteAll({})
-//       // models.Message.deleteMany({}),
-//     ])
 
-// }})
+app.get('*', (req, res) => {
+  res.sendFile(`${__dirname}/client/public/index.html`)
+})
+
 const PORT = process.env.PORT || 3001
-app.listen(PORT, ()=>{
-    console.log(`server working on ${PORT}`)
+app.listen(PORT, () => {
+  console.log(`server working on ${PORT}`)
 })
