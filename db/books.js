@@ -4,7 +4,7 @@ let newBooks = [
     {
         name: 'The Alchemist',
         description: ' The Alchemist follows the journey of an Andalusian shepherd boy named Santiago. Believing a recurring dream to be prophetic, he asks a Romani fortune teller in a nearby town about its meaning. The woman interprets the dream as a prophecy telling the boy that he will discover a treasure at the Egyptian pyramids.',
-        image: 'alchemist.jpg',
+        image: '/img/alchemist.jpg',
         author: 'Paul Coehen',
         price: 17.58,
     },{
