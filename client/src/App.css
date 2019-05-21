@@ -4,6 +4,9 @@
   text-decoration: none;
   font-family: 'Cherry Swash', cursive;
 }
+body{
+  background: black;
+}
 .allbooks{
   text-align: center;
   background: url('img/back4.jpg');
@@ -17,19 +20,52 @@ form div{
   text-align: center;
 }
 button{
-  text-align:center;
-  justify-content:center;
+  /* text-align:center; */
+  justify-content:left;
+  height: 50px;
+  /* width: 150px; */
+  font-size: 1.2em;
+  border-radius: 15px;
   
 }
 .navbar{
   display:flex;
   background: #F8C315;
   color: black;
-  justify-content: center;
+  justify-content: space-around;
   height: 15vh;
   align-items: center;
   font-family: 'Cherry Swash', cursive;
   font-size: 1.7em;
+  border-bottom: solid purple 5pt;
+  border-radius:10px;
+  top:0;
+  position: sticky;
+}
+.navbar h1{
+  /* border: solid; */
+  /* padding: 0 auto; */
+  line-height: .8;
+  font-size: 4rem;
+  width: fit-content;
+  /* margin: 0 auto; */
+  color: purple;
+  text-shadow: 5px 5px 1px black;
+}
+#navlink{
+  font-size: .7em;
+  /* border: solid */
+}
+.navbar img{
+  height: 50px;
+}
+.footer{
+  display:flex;
+  background: black;
+  color: #F8C315;
+  justify-content: space-around;
+  height: 25vh;
+  align-items: center;
 }
 .bookcontainer{
   display: flex;
@@ -49,6 +85,7 @@ button{
   height:320px;
   width: 320px;
   border-radius: 45px;
+  box-shadow: 1px -1px 16px purple ;
 }
 .single img{
   height: 200px;

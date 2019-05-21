@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import cart from '../img/shopping.png'
+import logo from '../img/logo.png'
 import '../App.css'
 
 class Navbar extends Component {
 render(){
     return(
         <div className="navbar">
-        {/* <a href="#description">Our Story</a>
-        <a href="#menu">Menu</a> */}
+         <Link to="/" id="navlink">
+        <img src={logo} alt="" />
+        </Link>
+        <Link to="/" id="navlink">All Books</Link>
+        
         <h1>Drea's BookStore</h1>
-        {/* <a href="#locations">Locations</a>
-        <a href="#contact">Contact</a> */}
+        <Link to="/login" id="navlink">Login</Link>
+        <Link to="/cart" id="navlink">
+        <img src={cart} alt="" />
+        </Link>
     </div>
     )
 }
