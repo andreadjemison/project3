@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-// const reactViews = require('express-react-views')
 const bookApi = require('./api/books')
 
 app.use(logger('dev'))
@@ -12,9 +11,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/client/public', express.static("public"))
 app.use(express.static(`${__dirname}/client/build`))
 
+
 // list of all books
 app.get('/',(req, res)=>{
-    bookApi.allBooks(req.query.q)
+    bookApi.allBooks()
     .then(books => {
       res.send(books);
     })
