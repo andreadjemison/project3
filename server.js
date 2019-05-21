@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/client/public', express.static("public"))
-app.use(express.static(`${__dirname}/client/build`))
+// app.use(express.static(`${__dirname}/client/build`))
 
 
 // list of all books
