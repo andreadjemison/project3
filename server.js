@@ -1,14 +1,14 @@
 const express = require('express')
 const app = express()
 const logger = require('morgan')
-// const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 // const reactViews = require('express-react-views')
 const bookApi = require('./api/books')
 
 app.use(logger('dev'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-// app.use(bodyParser)
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/client/public', express.static("public"))
 app.use(express.static(`${__dirname}/client/build`))
 
@@ -48,7 +48,7 @@ app.get('/:id',(req, res)=>{
     })
 })
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(`${__dirname}/client/public/index.html`)
 })
 
