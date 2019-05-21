@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 import Book from './components/Book'
 import All from './components/Allbooks'
 import Nav from './components/Navbar'
@@ -14,7 +14,8 @@ class App extends Component {
         <Nav />
           <Switch>
             <Route exact path="/" component={All}/>
-            <Route path="/new" component={Create}/>
+            <Route exact path="/new" component={Create}/>
+            <Redirect from='/new' push to='/'/>
             <Route path="/:id" component={Book}/>
           </Switch>
           <Footer />
