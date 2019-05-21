@@ -1,13 +1,19 @@
 require('dotenv').config()
-
-// requirements: import mongoose
 const mongoose = require('mongoose')
 
-const dbConnection = process.env.MONGODB_URI || 'mongodb://localhost:27017/bog1'
-mongoose.connect(dbConnection, { useNewUrlParser: true})
-  .then(() => {
-    console.log("mongo works");
-  })
+if(process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI)
+} else {
+    mongoose.connect('mongodb://localhost/idea-board')
+}
 
-// export your mongoose connection
-module.exports = mongoose;
+mongoose.connection.on('error', (err) => {
+    console.error('MongoDB connection error: ', err)
+    process.exit(-1)
+})
+
+mongoose.connection.once('open', () => {
+    console.log("Mongoose has connected to MongoDB")
+})
+
+module.exports = mongoose
