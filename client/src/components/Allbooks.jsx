@@ -1,39 +1,36 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import Data from '../data/books'
+// import { Link } from 'react-router-dom'
+// import axios from 'axios'
+import Book from './Book'
 
 class Allbooks extends Component {
-      state = {
-      books: [],
-      newBook: {
-        name: '',
-        description: '',
-        image: '',
-        author: '',
-        price: '',
-      },
-      isBookFormDisplayed: true
-  }
-    render(){
-        return(
-            <div className="allbooks"> 
-      <h1>All Books</h1>
-      <div className="bookcontainer">
+    // state = {
+    //       books: []
+    //     }
       
-        {this.state.books.map(Book => {
-                return (
-                    <div key={Book._id}>
-                        <Link
-                            to={`/${Book._id}`}
-                        >
-                        {Book.image}
-                            {Book.name}
-                        </Link>
+    // componentDidMount() {
+    //     axios.get('/db/books')
+    //         .then(res => {
+    //             this.setState({ books: res.data })
+    //             console.log(this.state.books);
+    //         })
+    // }
+    render() {
+        return (
+            <div className="allbooks">
+                <h1>All Books</h1>
+                <div className="bookcontainer">
+
+                    {Data.map((book, i) => 
+                        <Book key={i} book={book} />
+                            
+                        
+                    )}
                     </div>
-                )
-            })
-        }
-        </div>
-        </div>
+                    
+
+            </div>
         )
     }
 }
