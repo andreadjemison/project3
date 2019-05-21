@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
-// import Data from '../data/books'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-// import '../img'
-// import Book from './Book'
-
-// const BookList = props => (
-   
-//     )
 
 class Allbooks extends Component {
     constructor(props) {
