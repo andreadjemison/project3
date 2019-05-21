@@ -27,8 +27,8 @@ const updateBook = (book, id) => {
 const deleteBook = (id) => {
     return bookCollection.findByIdAndRemove(id)
 }
-const deleteAll = (id) => {
-    return bookCollection.deleteMany(id)
+const deleteAll = (books) => {
+    return bookCollection.deleteMany(books)
 }
 module.exports = {
     allBooks,

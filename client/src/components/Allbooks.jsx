@@ -20,18 +20,17 @@ class Allbooks extends Component {
     }
     showBooks() {
         return this.state.books.map(book => (
-            <div >
+            <div key={book}>
                 <Link to={`${book._id}`} >
                     <div className='single'>
                         <h2>{book.name} </h2>
-                        <img src={`src${book.image}`} alt={book.name} />
+                        {/* <img src={`${book.image}`} alt={book.name} /> */}
                         <h2>{book.author} </h2>
                         <h3>${book.price} </h3>
                     </div>
                 </Link>
             </div>
-        )
-        )
+        ))
     }
 
     render() {

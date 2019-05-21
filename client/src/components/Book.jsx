@@ -10,7 +10,7 @@ class Book extends Component {
             book: {
             name: this.props.name,
             description: this.props.description,
-            image: this.props.image,
+            // image: this.props.image,
             author: this.props.author,
             price: this.props.price,
         }
@@ -23,7 +23,7 @@ class Book extends Component {
                     book: {
                         name: res.data.name,
                         description: res.data.description,
-                        image: res.data.image,
+                        // image: res.data.image,
                         author: res.data.author,
                         price: res.data.price
                     }
@@ -37,7 +37,7 @@ class Book extends Component {
         return (
             <div className='show' >
             <h2>{this.state.book.name} </h2>
-            <img src={`/img/${this.state.book.image}`} alt=" " />
+            {/* <img src={`/img/${this.state.book.image}`} alt=" " /> */}
             <h2>{this.state.book.author} </h2>
             <h3>{this.state.book.description} </h3>
             <h4>${this.state.book.price} </h4>

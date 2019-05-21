@@ -4,6 +4,7 @@ const app = express()
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+app.use('/img', express.static('img'))
 
 const bookApi = require('./api/books')
 const booksroutes = express.Router()
@@ -67,14 +68,14 @@ app.get('/:id', (req, res) => {
 // delete all book
 booksroutes.route('/').delete((req, res) => {
   bookApi.deleteAll(req.params.id)
-    .then(deletebook => {
-      res.json(deletebook);
+    .then(deleteall => {
+      res.json(deleteall);
     })
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(`${__dirname}/client/public/index.html`)
-})
+// app.get('*', (req, res) => {
+//   res.sendFile(`${__dirname}/client/public/index.html`)
+// })
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
