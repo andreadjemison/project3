@@ -1,15 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Cherry+Swash:700&display=swap');
 *{
   margin: 0;
+  font-family: 'Cherry Swash', cursive;
 }
-.allbooks, .createnew{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* height: 100vh; */
-  padding:30px;
+.allbooks{
+  text-align: center;
+  background: url('img/back4.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 85vh;
+  color: #F8C315;
+}
 
-}
 form div{
   margin:10px;
   text-align: center;
@@ -21,14 +23,30 @@ button{
 }
 .navbar{
   display:flex;
-  background: purple;
-  color: gold;
+  background: #F8C315;
+  color: black;
   justify-content: center;
-  height: 70px;
+  height: 15vh;
   align-items: center;
+  font-family: 'Cherry Swash', cursive;
+  font-size: 1.7em;
 }
 .bookcontainer{
-  /* border:blue solid; */
-  /* height: 30px;
-  width: 50px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:30px;
+}
+.single, .createnew{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  margin: 0;
+  background: url('img/back.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #F8C315;
+
 }
