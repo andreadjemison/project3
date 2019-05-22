@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+// import { Redirect } from 'react-router'
 import '../App.css'
 
 
@@ -21,6 +22,9 @@ class CreateBook extends Component {
         this.handleChangeImage = this.handleChangeImage.bind(this)
         this.handleChangeAuthor = this.handleChangeAuthor.bind(this)
         this.handleChangePrice = this.handleChangePrice.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
+
+
     }
 
     handleChangeName = (e) => {
@@ -53,7 +57,7 @@ class CreateBook extends Component {
 
         axios.post('http://localhost:3000/new', newBooks)
             .then(() =>
-                <Link to="http://localhost:3000/" />
+                <Link to="/" />
             )
             .catch(err => {
                 console.log(err)
@@ -119,9 +123,13 @@ class CreateBook extends Component {
                             value={this.state.price}
                         />
                     </div>
+                    <Link to="/" >
                     <div>
+                    
                         <input type="submit" value="Add New Book" />
+                       
                     </div>
+                    </Link>
                 </form>
             </div>
         )
