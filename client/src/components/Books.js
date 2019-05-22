@@ -114,7 +114,7 @@ class Books extends Component {
                                     type="file"
                                     name="img"
                                     onChange={this.handleChange}
-                                    value={this.state.newBook.img}
+                                    value={`/img/${this.state.newBook.img}`}
                                 />
                             </div>
                             <div>

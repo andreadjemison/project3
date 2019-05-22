@@ -33,10 +33,10 @@ const kidController = {
     },
     update: async (req, res) => {
         try {
-          const id = req.params.id
+          const kidid = req.params.id
           const updatedkid = req.body
-          const savedkid = await Kid.findByIdAndUpdate(id, updatedkid, {new: true})
-          res.send(savedkid)
+          const savedkid = await Kid.findByIdAndUpdate(kidid, updatedkid, {new: true})
+          res.json(savedkid)
         }
         catch (err) {
           console.log(err)
@@ -46,9 +46,9 @@ const kidController = {
     delete: async (req, res) => {
         console.log('DELETE')
         try {
-          const id = req.params.id
-          const deletedkid = await Kid.findByIdAndRemove(id)
-          res.send(deletedkid)
+          const kidid = req.params.id
+          const deletedkid = await Kid.findByIdAndRemove(kidid)
+          res.json(deletedkid)
         }
         catch (err) {
           console.log(err)

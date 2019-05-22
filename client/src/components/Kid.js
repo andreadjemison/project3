@@ -1,4 +1,4 @@
-
+import { Redirect } from 'react-router-dom';
 import React, { Component } from 'react'
 import axios from 'axios'
 
@@ -64,14 +64,71 @@ class Kid extends Component {
     }
 
     render() {
+        console.log(this.state)
+        if (this.state.redirectToHome) {
+            return (<Redirect to="/api/v1/kids/" />)
+        }
         return (
             <div className="showcontainer">
                 {this.showKid()}
                 <div className="buttons">
-                    <button onClick={this.updateKid}>Update</button>
-                    <button onClick={this.deletekid}>Delete</button>
+                    <button onClick={this.deleteKid}>Delete</button>
                 </div>
-            </div>
+                <form onSubmit={ (e)=> this.updateKid(e)} className="color">
+
+<div>
+    <label htmlFor="name">Name</label>
+    <input
+        type="text"
+        name="name"
+        onChange={this.handleChange}
+        placeholder={this.state.kid.name}
+    />
+</div>
+
+<div>
+    <label htmlFor="name">Image</label>
+    <input
+        type="text"
+        name="img"
+        onChange={this.handleChange}
+        placeholder={this.state.kid.img}
+    />
+</div>
+
+<div>
+    <label htmlFor="name">Author</label>
+    <input
+        type="text"
+        name="author"
+        onChange={this.handleChange}
+        placeholder={this.state.kid.author}
+    />
+</div>
+<div>
+    <label htmlFor="name">Description</label>
+    <input
+        type="text"
+        name="description"
+        onChange={this.handleChange}
+        placeholder={this.state.kid.description}
+
+    />
+</div>
+
+<div>
+    <label htmlFor="name">Price</label>
+    <input
+        type="text"
+        name="price"
+        onChange={this.handleChange}
+        placeholder={this.state.kid.price}
+    />
+</div>
+<input className="createbutton" type="submit" value="Update Book" onClick={(e)=> this.updateKid(e)}/>
+</form>
+</div>
+          
         )
     }
 }

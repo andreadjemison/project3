@@ -33,10 +33,10 @@ const bookController = {
     },
     update: async (req, res) => {
         try {
-          const id = req.params.id
+          const bookid = req.params.id
           const updatedbook = req.body
-          const savedbook = await Book.findByIdAndUpdate(id, updatedbook, {new: true})
-          res.send(savedbook)
+          const savedbook = await Book.findByIdAndUpdate(bookid, updatedbook, {new: true})
+          res.json(savedbook)
         }
         catch (err) {
           console.log(err)
@@ -46,9 +46,9 @@ const bookController = {
     delete: async (req, res) => {
         console.log('DELETE')
         try {
-          const id = req.params.id
-          const deletedbook = await Book.findByIdAndRemove(id)
-          res.send(deletedbook)
+          const bookid = req.params.id
+          const deletedbook = await Book.findByIdAndRemove(bookid)
+          res.json(deletedbook)
         }
         catch (err) {
           console.log(err)
