@@ -9,7 +9,7 @@ render(){
         <h1>Welcome to Drea's BookShelf</h1>
         <Link to="/api/v1/books/">
         <div className='homesecs'>
-            The Adult Section
+            Grown Folks
         </div>
         </Link>
         <Link to="/api/v1/kids/">

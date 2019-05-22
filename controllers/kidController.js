@@ -12,8 +12,8 @@ const kidController = {
     show: async (req, res) => {
         try {
             const id = req.params.id
-            const Kid = await Kid.findById(id)
-            res.send(Kid)
+            const kid = await Kid.findById(id)
+            res.send(kid)
         } catch (err) {
             console.log(err)
             res.json(err)

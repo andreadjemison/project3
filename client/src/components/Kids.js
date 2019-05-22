@@ -63,7 +63,7 @@ class Kids extends Component {
     showKids =() =>{
         return this.state.kids.map((kid, i) => (
             <div key={i} kids={kid}>
-                <Link to={`${kid._id}`} >
+                <Link to={`/api/v1/kids/${kid._id}`} >
                     <div className='single'>
                         <h2>{kid.name} </h2>
                         <img src={`/img/${kid.img}`} alt={kid.name} />

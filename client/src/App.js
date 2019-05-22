@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Book from './components/Book.js'
 import Books from './components/Books.js'
 import Nav from './components/Navbar'
@@ -15,7 +15,7 @@ class App extends Component {
       <Router>
         <Nav />
         <Switch>
-          <Redirect from="/" to="/api/v1/" />
+          {/* <Redirect from="/" to="/api/v1/" /> */}
           <Route exact path="/api/v1/" component={Home} />
           <Route exact path="/api/v1/books" component={Books} />
           <Route path="/api/v1/books/:id" component={Book} />
