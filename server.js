@@ -19,7 +19,7 @@ app.use(cors())
 
 app.use('/', booksroutes)
 app.use('/client/public', express.static("public"))
-// app.use(express.static(`${__dirname}/client/build`))
+app.use(express.static(`${__dirname}/client/build`))
 
 
 // list of all books
