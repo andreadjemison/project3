@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import '../App.css'
 
 class Books extends Component {
@@ -36,9 +36,8 @@ class Books extends Component {
     }
 
     createBook = (e) => {
-        e.preventDefault()
-        axios
-            .post('/api/v1/books', {
+        // e.preventDefault()
+        axios.post('/api/v1/books', {
                 name: this.state.newBook.name,
                 description: this.state.newBook.description
             })
@@ -58,13 +57,13 @@ class Books extends Component {
                 })
             })
     }
-    showBooks() {
-        return this.state.books.map((book, i) => (
-            <div key={i}>
+    showBooks =() =>{
+        return this.state.books.map(book => (
+            <div>
                 <Link to={`/api/v1/books/${book._id}`} >
                     <div className='single'>
                         <h2>{book.name} </h2>
-                        <img src={`/img/${book.image}`} alt={book.name} />
+                        <img src={`/img/${book.img}`} alt={book.name} />
                         <h2>{book.author} </h2>
                         <h3>${book.price} </h3>
                     </div>
@@ -77,13 +76,12 @@ class Books extends Component {
 
             <div className="allbooks">
                 <h1>Book Catalogue</h1>
-                <div className="bookcontainer">
 
+                <div className="bookcontainer">
                     {this.showBooks()}
                 </div>
                 <button className="buttons createbutton" onClick={this.toggleBookForm}>Add New Book</button>
-                {
-                    this.state.isBookFormDisplayed
+                {this.state.isBookFormDisplayed
                         ? 
                         <form onSubmit={this.createBook}>
                             <div>
@@ -136,7 +134,7 @@ class Books extends Component {
                                     value={this.state.newBook.price}
                                 />
                             </div>
-                            <button>Create</button>
+                            <button onClick={this.createBook()}>Create</button>
                         </form >
                         : null
                 }
