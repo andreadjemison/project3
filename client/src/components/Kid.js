@@ -40,18 +40,18 @@ class Kid extends Component {
     updateKid = (e) => {
         e.preventDefault()
         axios.put(`/api/v1/kids/${this.props.match.params.id}`, {
-                name: this.state.kid.name,
-                description: this.state.kid.description,
-                img: this.state.kid.img,
-                author: this.state.kid.author,
-                price: this.state.kid.price
-            })
+            name: this.state.kid.name,
+            description: this.state.kid.description,
+            img: this.state.kid.img,
+            author: this.state.kid.author,
+            price: this.state.kid.price
+        })
             .then(res => {
                 this.setState({ kid: res.data, isEditFormDisplayed: false })
             })
     }
 
-    showKid= ()=> {
+    showKid = () => {
         return (
             <div className='show' >
                 <h2>{this.state.kid.name} </h2>

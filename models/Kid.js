@@ -8,4 +8,3 @@ const Kids = new mongoose.Schema({
     price: Number
 })
 module.exports =  mongoose.model('Kids', Kids)
-

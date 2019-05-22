@@ -46,7 +46,7 @@ class Books extends Component {
             })
             .then(res => {
                 const booksList = [...this.state.books]
-                booksList.unshift(res.data)
+                booksList.push(res.data)
                 this.setState({
                     newBook: {
                         name: '',

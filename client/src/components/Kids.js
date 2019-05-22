@@ -46,7 +46,7 @@ class Kids extends Component {
             })
             .then(res => {
                 const kidsList = [...this.state.kids]
-                kidsList.unshift(res.data)
+                kidsList.push(res.data)
                 this.setState({
                     newKid: {
                         name: '',
