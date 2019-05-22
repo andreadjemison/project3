@@ -6,6 +6,7 @@ import All from './components/Allbooks'
 import Nav from './components/Navbar'
 import Footer from './components/Footer'
 import Create from './components/CreateBook'
+import Edit from './components/Edit'
 
 class App extends Component {
   render() {
@@ -15,7 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={All}/>
             <Route exact path="/new" component={Create}/>
-            <Redirect from='/new' push to='/'/>
+            <Route exact path="/edit" component={Edit}/>
             <Route path="/:id" component={Book}/>
           </Switch>
           <Footer />

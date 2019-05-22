@@ -44,6 +44,14 @@ class Book extends Component {
             </div>
         )
     }
+    handleDelete = (itemId) => {
+       
+        axios.delete("url", { params: { id: itemId } })
+        .then(res => {
+          console.log(res);
+        })
+    }
+
     render() {
         // let books1 = this.props
         return (

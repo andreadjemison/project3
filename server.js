@@ -24,13 +24,6 @@ app.use(express.static(`${__dirname}/client/build`))
 
 // list of all books
 
-// booksroutes.route('/').get((req, res) => {
-//   bookApi.allBooks()
-//     .then(books => {
-//       res.json(books)
-//     })
-// })
-
 booksroutes.get('/', (req, res) => {
   bookApi.allBooks()
     .then(books => {
@@ -40,21 +33,6 @@ booksroutes.get('/', (req, res) => {
 
 
 // add new book
-
-// app.post('/new', (req, res) => {
-//   let newbook = req.body
-//   // bookApi.newBook(newbook)
-//   // connection.query("INSERT INTO users SET ?", newbook, (error, results, fields) =>{
-//   //   if (error) throw error;
-//   //   console.log(results.insertId);
-//   //   res.end(JSON.stringify(results))
-//     .then(newbook => {
-//       res.send(newbook)
-//     })
-//     .catch(err =>{
-//       res.send(err)
-//     })
-// })
 
 booksroutes.post('/new', (req, res) => {
   let newbook = req.body
@@ -66,14 +44,7 @@ booksroutes.post('/new', (req, res) => {
 })
 
 
-
 // show single book
-// booksroutes.route('/:id').get((req, res) => {
-//   bookApi.oneBook(req.params.id)
-//     .then(onebook => {
-//       res.send(onebook)
-//     })
-// })
 
 booksroutes.get('/:id', (req, res) => {
   bookApi.oneBook(req.params.id)
@@ -91,7 +62,7 @@ booksroutes.put('/:id', (req, res) => {
 })
 
 // delete single book
-booksroutes.get('/:id', (req, res) => {
+booksroutes.delete('/:id', (req, res) => {
   bookApi.deleteBook(req.params.id)
     .then(deletebook => {
       res.json({deletebook});
@@ -99,7 +70,7 @@ booksroutes.get('/:id', (req, res) => {
 })
 
 // delete all book
-booksroutes.route('/').delete((req, res) => {
+booksroutes.delete('/', (req, res) => {
   bookApi.deleteAll(req.params.id)
     .then(deleteall => {
       res.json(deleteall);

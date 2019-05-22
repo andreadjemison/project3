@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import '../App.css'
 
 
-class CreateBook extends Component {
+class Edit extends Component {
     constructor(props) {
         super(props)
 
@@ -21,7 +21,6 @@ class CreateBook extends Component {
         this.handleChangeImage = this.handleChangeImage.bind(this)
         this.handleChangeAuthor = this.handleChangeAuthor.bind(this)
         this.handleChangePrice = this.handleChangePrice.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
     }
 
     handleChangeName = (e) => {
@@ -52,7 +51,7 @@ class CreateBook extends Component {
             price,
         }
 
-        axios.post('http://localhost:3000/new', newBooks)
+        axios.post('http://localhost:3000/edit', newBooks)
             .then(() =>
                 <Link to="/" />
             )
@@ -64,7 +63,7 @@ class CreateBook extends Component {
     render() {
         return (
             <div className="createnew">
-                <h1>Add New Book</h1>
+                <h1>Edit New Book</h1>
                 <form onSubmit={this.onSubmit}>
                     <div>
                         <label htmlFor="name">Name</label>
@@ -120,17 +119,13 @@ class CreateBook extends Component {
                             value={this.state.price}
                         />
                     </div>
-                    
                     <div>
-                    
-                        <input type="submit" value="Add New Book" />
-                        
+                        <input type="submit" value="Update Book" />
                     </div>
-                    
                 </form>
             </div>
         )
     }
 }
 
-export default CreateBook
+export default Edit

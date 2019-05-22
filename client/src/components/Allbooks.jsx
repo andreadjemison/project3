@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-// import redux from 'react-redux'
-// import '../../public/img'
 
 class Allbooks extends Component {
     constructor(props) {
@@ -39,8 +37,6 @@ class Allbooks extends Component {
 
             <div className="allbooks">
                 <h1>All Books</h1>
-
-                <div className="bookcontainer">
                 <div className="buttons">
 
 <div className="create">
@@ -55,6 +51,8 @@ class Allbooks extends Component {
     <input className="createbutton" type="submit" value="Remove all Books" />
 </div>
 </div>
+                <div className="bookcontainer">
+
                     {this.showBooks(books2)}
                 </div>
 
