@@ -1,38 +1,57 @@
 
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 
 class Book extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            book: {
-                name: this.props.name,
-                description: this.props.description,
-                image: this.props.image,
-                author: this.props.author,
-                price: this.props.price,
-            }
-        }
+    state = {
+        book: {
+            name: '',
+            description: '',
+            img: '',
+            author: '',
+            price: ''
+        },
+        isEditFormDisplayed: false
     }
     componentDidMount() {
-        axios.get('http://localhost:3001/' + this.props.match.params.id)
+        axios.get(`/api/v1/books/${this.props.match.params.id}`)
             .then(res => {
-                this.setState({
-                    book: {
-                        name: res.data.name,
-                        description: res.data.description,
-                        image: res.data.image,
-                        author: res.data.author,
-                        price: res.data.price
-                    }
-                })
-            })
-            .catch((err) => {
-                console.log(err);
+                this.setState({ book: res.data })
             })
     }
+    deleteBook = () => {
+        axios.delete(`/api/v1/books/${this.props.match.params.id}`)
+            .then(res => {
+                this.setState({ redirectToHome: true })
+            })
+    }
+
+    toggleEditForm = () => {
+        this.setState((state, props) => {
+            return { isEditFormDisplayed: !state.isEditFormDisplayed }
+        })
+    }
+
+    handleChange = (e) => {
+        const cloneBook = { ...this.state.Book }
+        cloneBook[e.target.name] = e.target.value
+        this.setState({ Book: cloneBook })
+    }
+    updateBook = (e) => {
+        e.preventDefault()
+        axios
+            .put(`/api/v1/books/${this.props.match.params.id}`, {
+                name: this.state.book.name,
+                description: this.state.book.description,
+                img: this.state.book.img,
+                author: this.state.book.author,
+                price: this.state.book.price
+            })
+            .then(res => {
+                this.setState({ book: res.data, isEditFormDisplayed: false })
+            })
+    }
+
     showBook() {
         return (
             <div className='show' >
@@ -44,34 +63,15 @@ class Book extends Component {
             </div>
         )
     }
-    handleDelete = (itemId) => {
-       
-        axios.delete("url", { params: { id: itemId } })
-        .then(res => {
-          console.log(res);
-        })
-    }
 
     render() {
-        // let books1 = this.props
         return (
             <div className="showcontainer">
-                <div className="buttons">
-
-                    <div className="create">
-                        <Link to="/edit">
-                            <input className="createbutton" type="button" value="Update This Book" />
-                        </Link>
-                    </div>
-
-                    <div className="deleteall">
-                        <input className="createbutton" type="submit" value="Remove This Book" />
-                    </div>
-                </div>
-
                 {this.showBook()}
-
-
+                <div className="buttons">
+                    <button onClick={this.updateBook}>Update</button>
+                    <button onClick={this.deletebook}>Delete</button>
+                </div>
             </div>
         )
     }
