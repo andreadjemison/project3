@@ -1,10 +1,10 @@
-const Book = require('../models/Book')
+const Book = require('../models/Book.js')
 
 const bookController = {
     index: async (req, res) => {
         try {
             const books = await Book.find()
-            res.send(books)
+            res.json(books)
         } catch (err) {
             console.log(err)
         }
@@ -13,10 +13,10 @@ const bookController = {
         try {
             const id = req.params.id
             const book = await Book.findById(id)
-            res.send(book)
+            res.json(book)
         } catch (err) {
             console.log(err)
-            res.send(err)
+            res.json(err)
         }
     },
     create: async (req, res) => {

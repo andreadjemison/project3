@@ -52,11 +52,11 @@ class Book extends Component {
             })
     }
 
-    showBook() {
+    showBook= ()=> {
         return (
             <div className='show' >
                 <h2>{this.state.book.name} </h2>
-                <img src={`./img/${this.state.book.image}`} alt=" " />
+                <img src={`/img/${this.state.book.image}`} alt=" " />
                 <h2>{this.state.book.author} </h2>
                 <h3>{this.state.book.description} </h3>
                 <h4>${this.state.book.price} </h4>
@@ -67,7 +67,7 @@ class Book extends Component {
     render() {
         return (
             <div className="showcontainer">
-                {this.showBook()}
+                {this.showBook}
                 <div className="buttons">
                     <button onClick={this.updateBook}>Update</button>
                     <button onClick={this.deletebook}>Delete</button>

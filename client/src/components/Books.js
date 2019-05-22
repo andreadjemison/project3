@@ -36,7 +36,7 @@ class Books extends Component {
     }
 
     createBook = (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         axios.post('/api/v1/books', {
                 name: this.state.newBook.name,
                 description: this.state.newBook.description
@@ -58,8 +58,8 @@ class Books extends Component {
             })
     }
     showBooks =() =>{
-        return this.state.books.map(book => (
-            <div>
+        return this.state.books.map((book, i) => (
+            <div key={i} book={book}>
                 <Link to={`/api/v1/books/${book._id}`} >
                     <div className='single'>
                         <h2>{book.name} </h2>
@@ -134,7 +134,7 @@ class Books extends Component {
                                     value={this.state.newBook.price}
                                 />
                             </div>
-                            <button onClick={this.createBook()}>Create</button>
+                            <button onClick={this.createBook}>Create</button>
                         </form >
                         : null
                 }
