@@ -8,82 +8,57 @@ class CreateBook extends Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            name: '',
+            description: '',
+            image: '',
+            author: '',
+            price: '',
+        }
+
         this.handleChangeName = this.handleChangeName.bind(this)
         this.handleChangeDescription = this.handleChangeDescription.bind(this)
-        // this.handleChangeImage = this.handleChangeImage.bind(this)
+        this.handleChangeImage = this.handleChangeImage.bind(this)
         this.handleChangeAuthor = this.handleChangeAuthor.bind(this)
         this.handleChangePrice = this.handleChangePrice.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
-
-        this.state = {
-                name: '',
-                description: '',
-                image: '',
-                author: '',
-                price: '',
-        }
     }
 
-    handleChangeName(e) {
+    handleChangeName = (e) => {
         this.setState({ name: e.target.value })
     }
-    handleChangeDescription(e) {
+    handleChangeDescription = (e) => {
         this.setState({ description: e.target.value })
     }
-    // handleChangeImage(e) {
-    //     this.setState({ image: e.target.value })
-    // }
-    handleChangeAuthor(e) {
+    handleChangeImage = (e) => {
+        this.setState({ image: e.target.value })
+    }
+    handleChangeAuthor = (e) => {
         this.setState({ author: e.target.value })
     }
-    handleChangePrice(e) {
+    handleChangePrice = (e) => {
         this.setState({ price: e.target.value })
     }
 
-    onSubmit(e) {
+    onSubmit = (e) => {
         e.preventDefault()
 
-        console.log(`Form submitted:`);
-        console.log(`Name: ${this.state.name}`)
-        console.log(`Description: ${this.state.description}`)
-        // console.log(`Image: /${this.props.image}`)
-        console.log(`Author: ${this.state.author}`)
-        console.log(`Price: ${this.state.price}`)
-
-        const newBook = {
-            name: this.state.name,
-            description: this.state.description,
-            // image: this.state.image,
-            author: this.state.author,
-            price: this.state.price,
+        const { name, description, image, author, price } = this.state
+        const newBooks = {
+            name,
+            description,
+            image,
+            author,
+            price,
         }
-        axios.post('http://localhost:3000/', newBook)
-            .then(res => { 
-                return (res.data)
-                })
-            
-            this.setState({
-                name: '',
-                description: '',
-                image: '',
-                author: '',
-                price: '',
+
+        axios.post('http://localhost:3000/new', newBooks)
+            .then(() =>
+                <Link to="http://localhost:3000/" />
+            )
+            .catch(err => {
+                console.log(err)
             })
-            }
-            showBooks() {
-                return this.state.books.map(book => (
-                    <div key={book}>
-                        <Link to={`${book._id}`} >
-                            <div className='single'>
-                                <h2>{book.name} </h2>
-                                {/* <img src={`${book.image}`} alt={book.name} /> */}
-                                <h2>{book.author} </h2>
-                                <h3>${book.price} </h3>
-                            </div>
-                        </Link>
-                    </div>
-                ))
-            }
+    }
 
     render() {
         return (
@@ -112,7 +87,7 @@ class CreateBook extends Component {
                             value={this.state.description}
                         />
                     </div>
-                    {/* <div>
+                    <div>
                         <label htmlFor="image">Image</label>
                         <input
                             id="image"
@@ -121,7 +96,7 @@ class CreateBook extends Component {
                             onChange={this.handleChangeImage}
                             value={this.state.image}
                         />
-                    </div> */}
+                    </div>
                     <div>
                         <label htmlFor="author">Author</label>
                         <input
@@ -146,7 +121,7 @@ class CreateBook extends Component {
                     </div>
                     <div>
                         <input type="submit" value="Add New Book" />
-                        </div>
+                    </div>
                 </form>
             </div>
         )

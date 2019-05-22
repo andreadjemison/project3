@@ -23,34 +23,67 @@ app.use('/client/public', express.static("public"))
 
 
 // list of all books
-booksroutes.route('/').get((req, res) => {
+
+// booksroutes.route('/').get((req, res) => {
+//   bookApi.allBooks()
+//     .then(books => {
+//       res.json(books)
+//     })
+// })
+
+booksroutes.get('/', (req, res) => {
   bookApi.allBooks()
     .then(books => {
-      res.json(books)
+      res.send(books)
     })
 })
+
 
 // add new book
-booksroutes.route('/new').post((req, res) => {
-  let newbook = new Book(req.body)
-  bookApi.newBook(newbook)
-    // newbook.save()
-    .then(book => {
-      res.json(book)
-    })
 
+// app.post('/new', (req, res) => {
+//   let newbook = req.body
+//   // bookApi.newBook(newbook)
+//   // connection.query("INSERT INTO users SET ?", newbook, (error, results, fields) =>{
+//   //   if (error) throw error;
+//   //   console.log(results.insertId);
+//   //   res.end(JSON.stringify(results))
+//     .then(newbook => {
+//       res.send(newbook)
+//     })
+//     .catch(err =>{
+//       res.send(err)
+//     })
+// })
+
+booksroutes.post('/new', (req, res) => {
+  let newbook = req.body
+  bookApi.newBook(newbook)
+    newbook.save()
+    .then(newbook => {
+      res.send(newbook)
+    })
 })
 
+
+
 // show single book
-booksroutes.route('/:id').get((req, res) => {
+// booksroutes.route('/:id').get((req, res) => {
+//   bookApi.oneBook(req.params.id)
+//     .then(onebook => {
+//       res.send(onebook)
+//     })
+// })
+
+booksroutes.get('/:id', (req, res) => {
   bookApi.oneBook(req.params.id)
     .then(onebook => {
-      res.json(onebook)
+      res.send(onebook)
     })
 })
 
 // update single book
-app.get('/:id', (req, res) => {
+booksroutes.put('/:id', (req, res) => {
   bookApi.updateBook(req.params.id, req.body)
     .then(update => {
       res.send(update);
@@ -58,10 +91,10 @@ app.get('/:id', (req, res) => {
 })
 
 // delete single book
-app.get('/:id', (req, res) => {
+booksroutes.get('/:id', (req, res) => {
   bookApi.deleteBook(req.params.id)
     .then(deletebook => {
-      res.send(deletebook);
+      res.json({deletebook});
     })
 })
 
@@ -73,9 +106,16 @@ booksroutes.route('/').delete((req, res) => {
     })
 })
 
-// app.get('*', (req, res) => {
-//   res.sendFile(`${__dirname}/client/public/index.html`)
+// booksroutes.route('/').delete((req, res) => {
+//   bookApi.deleteAll(req.params.id)
+//     .then(deleteall => {
+//       res.json(deleteall);
+//     })
 // })
+
+booksroutes.get('*', (req, res) => {
+  res.sendFile(`${__dirname}/client/public/index.html`)
+})
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
