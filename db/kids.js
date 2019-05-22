@@ -1,9 +1,9 @@
-let Books = require('../models/Book.js')
+let Kids = require('../models/Kid.js')
 
 
-Books.deleteMany()
+Kids.deleteMany()
     .then(() => {
-        const alchemist = new Books({
+        const alchemist = new Kids({
             name: 'The Alchemist',
             description: ' The Alchemist follows the journey of an Andalusian shepherd boy named Santiago. Believing a recurring dream to be prophetic, he asks a Romani fortune teller in a nearby town about its meaning. The woman interprets the dream as a prophecy telling the boy that he will discover a treasure at the Egyptian pyramids.',
             img: 'alchemist.jpg',
@@ -13,7 +13,7 @@ Books.deleteMany()
         return alchemist.save()
     })
     .then(() => {
-        const browder = new Books({
+        const browder = new Kids({
             name: 'From the Browder File',
             description: ' The Alchemist follows the journey of an Andalusian shepherd boy named Santiago. Believing a recurring dream to be prophetic, he asks a Romani fortune teller in a nearby town about its meaning. The woman interprets the dream as a prophecy telling the boy that he will discover a treasure at the Egyptian pyramids.',
             img: 'browderfile.jpg',

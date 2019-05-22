@@ -3,72 +3,72 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import '../App.css'
 
-class Books extends Component {
+class Kids extends Component {
     state = {
-        books: [],
-        newBook: {
+        kids: [],
+        newKid: {
             name: '',
             description: '',
             img: '',
             author: '',
             price: '',
         },
-        isBookFormDisplayed: false
+        isKidFormDisplayed: false
     }
     componentDidMount() {
-        axios.get('/api/v1/books')
+        axios.get('/api/v1/kids')
             .then(res => {
-                this.setState({ books: res.data })
+                this.setState({ kids: res.data })
             })
 
     }
 
-    toggleBookForm = () => {
+    toggleKidForm = () => {
         this.setState((state, props) => {
-            return ({ isBookFormDisplayed: !state.isBookFormDisplayed })
+            return ({ isKidFormDisplayed: !state.isKidFormDisplayed })
         })
     }
 
     handleChange = (e) => {
-        const cloneNewBook = { ...this.state.newBook }
-        cloneNewBook[e.target.name] = e.target.value
-        this.setState({ newBook: cloneNewBook })
+        const cloneNewKid = { ...this.state.newKid }
+        cloneNewKid[e.target.name] = e.target.value
+        this.setState({ newKid: cloneNewKid })
     }
 
-    createBook = (e) => {
+    createKid = (e) => {
         e.preventDefault()
-        axios.post('/api/v1/books', {
-                name: this.state.newBook.name,
-                description: this.state.newBook.description,
-                img: this.state.newBook.img,
-                author: this.state.newBook.author,
-                price: this.state.newBook.price,
+        axios.post('/api/v1/kids', {
+                name: this.state.newKid.name,
+                description: this.state.newKid.description,
+                img: this.state.newKid.img,
+                author: this.state.newKid.author,
+                price: this.state.newKid.price,
             })
             .then(res => {
-                const booksList = [...this.state.books]
-                booksList.unshift(res.data)
+                const kidsList = [...this.state.kids]
+                kidsList.unshift(res.data)
                 this.setState({
-                    newBook: {
+                    newKid: {
                         name: '',
                         description: '',
                         img: '',
                         author: '',
                         price: '',
                     },
-                    isBookFormDisplayed: false,
-                    books: booksList
+                    isKidFormDisplayed: false,
+                    kids: kidsList
                 })
             })
     }
-    showBooks =() =>{
-        return this.state.books.map((book, i) => (
-            <div key={i} books={book}>
-                <Link to={`${book._id}`} >
+    showKids =() =>{
+        return this.state.kids.map((kid, i) => (
+            <div key={i} kids={kid}>
+                <Link to={`${kid._id}`} >
                     <div className='single'>
-                        <h2>{book.name} </h2>
-                        <img src={`/img/${book.img}`} alt={book.name} />
-                        <h2>{book.author} </h2>
-                        <h3>${book.price} </h3>
+                        <h2>{kid.name} </h2>
+                        <img src={`/img/${kid.img}`} alt={kid.name} />
+                        <h2>{kid.author} </h2>
+                        <h3>${kid.price} </h3>
                     </div>
                 </Link>
             </div>
@@ -77,16 +77,16 @@ class Books extends Component {
     render() {
         return (
 
-            <div className="allbooks">
-                <h1>Book Catalogue</h1>
+            <div className="allkids">
+                <h1>Kid Catalogue</h1>
 
-                <div className="bookcontainer">
-                    {this.showBooks()}
+                <div className="kidcontainer">
+                    {this.showKids()}
                 </div>
-                <button className="buttons createbutton" onClick={this.toggleBookForm}>Add New Book</button>
-                {this.state.isBookFormDisplayed
+                <button className="buttons createbutton" onClick={this.toggleKidForm}>Add New Kid</button>
+                {this.state.isKidFormDisplayed
                         ? 
-                        <form onSubmit={this.createBook}>
+                        <form onSubmit={this.createKid}>
                             <div>
                                 <label htmlFor="name">Name</label>
                                 <input
@@ -94,7 +94,7 @@ class Books extends Component {
                                     type="text"
                                     name="name"
                                     onChange={this.handleChange}
-                                    value={this.state.newBook.name}
+                                    value={this.state.newKid.name}
                                 />
                             </div>
                             <div>
@@ -104,7 +104,7 @@ class Books extends Component {
                                     type="text"
                                     name="description"
                                     onChange={this.handleChange}
-                                    value={this.state.newBook.description}
+                                    value={this.state.newKid.description}
                                 />
                             </div>
                             <div>
@@ -114,7 +114,7 @@ class Books extends Component {
                                     type="file"
                                     name="img"
                                     onChange={this.handleChange}
-                                    value={this.state.newBook.img}
+                                    value={this.state.newKid.img}
                                 />
                             </div>
                             <div>
@@ -124,7 +124,7 @@ class Books extends Component {
                                     type="text"
                                     name="author"
                                     onChange={this.handleChange}
-                                    value={this.state.newBook.author}
+                                    value={this.state.newKid.author}
                                 />
                             </div>
                             <div>
@@ -134,10 +134,10 @@ class Books extends Component {
                                     type="text"
                                     name="price"
                                     onChange={this.handleChange}
-                                    value={this.state.newBook.price}
+                                    value={this.state.newKid.price}
                                 />
                             </div>
-                            <button onClick={this.createBook}>Create</button>
+                            <button onClick={this.createKid}>Create</button>
                         </form >
                         : null
                 }
@@ -145,4 +145,4 @@ class Books extends Component {
         )
     }
 }
-export default Books
+export default Kids

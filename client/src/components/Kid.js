@@ -2,9 +2,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-class Book extends Component {
+class Kid extends Component {
     state = {
-        book: {
+        kid: {
             name: '',
             description: '',
             img: '',
@@ -14,13 +14,13 @@ class Book extends Component {
         isEditFormDisplayed: false
     }
     componentDidMount() {
-        axios.get(`/api/v1/books/${this.props.match.params.id}`)
+        axios.get(`/api/v1/kids/${this.props.match.params.id}`)
             .then(res => {
-                this.setState({ book: res.data })
+                this.setState({ kid: res.data })
             })
     }
-    deleteBook = () => {
-        axios.delete(`/api/v1/books/${this.props.match.params.id}`)
+    deleteKid = () => {
+        axios.delete(`/api/v1/kids/${this.props.match.params.id}`)
             .then(res => {
                 this.setState({ redirectToHome: true })
             })
@@ -33,32 +33,32 @@ class Book extends Component {
     }
 
     handleChange = (e) => {
-        const cloneBook = { ...this.state.Book }
-        cloneBook[e.target.name] = e.target.value
-        this.setState({ Book: cloneBook })
+        const cloneKid = { ...this.state.Kid }
+        cloneKid[e.target.name] = e.target.value
+        this.setState({ Kid: cloneKid })
     }
-    updateBook = (e) => {
+    updateKid = (e) => {
         e.preventDefault()
-        axios.put(`/api/v1/books/${this.props.match.params.id}`, {
-                name: this.state.book.name,
-                description: this.state.book.description,
-                img: this.state.book.img,
-                author: this.state.book.author,
-                price: this.state.book.price
+        axios.put(`/api/v1/kids/${this.props.match.params.id}`, {
+                name: this.state.kid.name,
+                description: this.state.kid.description,
+                img: this.state.kid.img,
+                author: this.state.kid.author,
+                price: this.state.kid.price
             })
             .then(res => {
-                this.setState({ book: res.data, isEditFormDisplayed: false })
+                this.setState({ kid: res.data, isEditFormDisplayed: false })
             })
     }
 
-    showBook= ()=> {
+    showKid= ()=> {
         return (
             <div className='show' >
-                <h2>{this.state.book.name} </h2>
-                <img src={`/img/${this.state.book.img}`} alt=" " />
-                <h2>{this.state.book.author} </h2>
-                <h3>{this.state.book.description} </h3>
-                <h4>${this.state.book.price} </h4>
+                <h2>{this.state.kid.name} </h2>
+                <img src={`/img/${this.state.kid.img}`} alt=" " />
+                <h2>{this.state.kid.author} </h2>
+                <h3>{this.state.kid.description} </h3>
+                <h4>${this.state.kid.price} </h4>
             </div>
         )
     }
@@ -66,13 +66,13 @@ class Book extends Component {
     render() {
         return (
             <div className="showcontainer">
-                {this.showBook()}
+                {this.showKid()}
                 <div className="buttons">
-                    <button onClick={this.updateBook}>Update</button>
-                    <button onClick={this.deletebook}>Delete</button>
+                    <button onClick={this.updateKid}>Update</button>
+                    <button onClick={this.deletekid}>Delete</button>
                 </div>
             </div>
         )
     }
 }
-export default Book
+export default Kid
