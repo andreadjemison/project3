@@ -39,7 +39,10 @@ class Books extends Component {
         e.preventDefault()
         axios.post('/api/v1/books', {
                 name: this.state.newBook.name,
-                description: this.state.newBook.description
+                description: this.state.newBook.description,
+                img: this.state.newBook.img,
+                author: this.state.newBook.author,
+                price: this.state.newBook.price,
             })
             .then(res => {
                 const booksList = [...this.state.books]
@@ -59,8 +62,8 @@ class Books extends Component {
     }
     showBooks =() =>{
         return this.state.books.map((book, i) => (
-            <div key={i} book={book}>
-                <Link to={`/api/v1/books/${book._id}`} >
+            <div key={i} books={book}>
+                <Link to={`${book._id}`} >
                     <div className='single'>
                         <h2>{book.name} </h2>
                         <img src={`/img/${book.img}`} alt={book.name} />

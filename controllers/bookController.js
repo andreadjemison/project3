@@ -13,7 +13,7 @@ const bookController = {
         try {
             const id = req.params.id
             const book = await Book.findById(id)
-            res.json(book)
+            res.send(book)
         } catch (err) {
             console.log(err)
             res.json(err)
@@ -22,8 +22,9 @@ const bookController = {
     create: async (req, res) => {
         try {
           const newbook = req.body
+          console.log(newbook)
           const savedbook = await Book.create(newbook)
-          res.send(savedbook)
+          res.json(savedbook)
         } 
         catch (err) {
           console.log(err)
