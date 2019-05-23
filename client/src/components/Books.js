@@ -20,7 +20,6 @@ class Books extends Component {
             .then(res => {
                 this.setState({ books: res.data })
             })
-
     }
 
     toggleBookForm = () => {
@@ -38,12 +37,12 @@ class Books extends Component {
     createBook = (e) => {
         e.preventDefault()
         axios.post('/api/v1/books', {
-                name: this.state.newBook.name,
-                description: this.state.newBook.description,
-                img: this.state.newBook.img,
-                author: this.state.newBook.author,
-                price: this.state.newBook.price,
-            })
+            name: this.state.newBook.name,
+            description: this.state.newBook.description,
+            img: this.state.newBook.img,
+            author: this.state.newBook.author,
+            price: this.state.newBook.price,
+        })
             .then(res => {
                 const booksList = [...this.state.books]
                 booksList.push(res.data)
@@ -60,13 +59,15 @@ class Books extends Component {
                 })
             })
     }
-    showBooks =() =>{
+    
+    showBooks = () => {
         return this.state.books.map((book, i) => (
             <div key={i} books={book}>
                 <Link to={`${book._id}`} >
                     <div className='single'>
                         <h2>{book.name} </h2>
-                        <img src={`/img/${book.img}`} alt={book.name} />
+                        <img src={`/img/${book.img}`}
+                            alt={book.name} />
                         <h2>{book.author} </h2>
                         <h3>${book.price} </h3>
                     </div>
@@ -74,6 +75,7 @@ class Books extends Component {
             </div>
         ))
     }
+
     render() {
         return (
 
@@ -85,61 +87,61 @@ class Books extends Component {
                 </div>
                 <button className="buttons createbutton" onClick={this.toggleBookForm}>Add New Book</button>
                 {this.state.isBookFormDisplayed
-                        ? 
-                        <form onSubmit={this.createBook}>
-                            <div>
-                                <label htmlFor="name">Name</label>
-                                <input
-                                    id="name"
-                                    type="text"
-                                    name="name"
-                                    onChange={this.handleChange}
-                                    value={this.state.newBook.name}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="description">Description</label>
-                                <textarea
-                                    id="description"
-                                    type="text"
-                                    name="description"
-                                    onChange={this.handleChange}
-                                    value={this.state.newBook.description}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="img">Image</label>
-                                <input
-                                    id="image"
-                                    type="file"
-                                    name="img"
-                                    onChange={this.handleChange}
-                                    value={`/img/${this.state.newBook.img}`}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="author">Author</label>
-                                <input
-                                    id="author"
-                                    type="text"
-                                    name="author"
-                                    onChange={this.handleChange}
-                                    value={this.state.newBook.author}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="price">Price</label>
-                                <textarea
-                                    id="price"
-                                    type="text"
-                                    name="price"
-                                    onChange={this.handleChange}
-                                    value={this.state.newBook.price}
-                                />
-                            </div>
-                            <button onClick={this.createBook}>Create</button>
-                        </form >
-                        : null
+                    ?
+                    <form onSubmit={this.createBook}>
+                        <div>
+                            <label htmlFor="name">Name</label>
+                            <input
+                                id="name"
+                                type="text"
+                                name="name"
+                                onChange={this.handleChange}
+                                value={this.state.newBook.name}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="description">Description</label>
+                            <textarea
+                                id="description"
+                                type="text"
+                                name="description"
+                                onChange={this.handleChange}
+                                value={this.state.newBook.description}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="img">Image</label>
+                            <input
+                                id="image"
+                                type="file"
+                                name="img"
+                                onChange={this.handleChange}
+                                value={`/img/${this.state.newBook.img}`}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="author">Author</label>
+                            <input
+                                id="author"
+                                type="text"
+                                name="author"
+                                onChange={this.handleChange}
+                                value={this.state.newBook.author}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="price">Price</label>
+                            <textarea
+                                id="price"
+                                type="text"
+                                name="price"
+                                onChange={this.handleChange}
+                                value={this.state.newBook.price}
+                            />
+                        </div>
+                        <button onClick={this.createBook}>Create</button>
+                    </form >
+                    : null
                 }
             </div>
         )

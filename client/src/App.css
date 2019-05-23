@@ -43,11 +43,11 @@ body{
   color: white;
   height: 100%;
   border: solid white;
-  /* width: 100%; */
   border-radius: 45px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   box-shadow: 1px -1px 16px purple ;
 }
 .show img{
@@ -80,7 +80,9 @@ form label{
 form input, form textarea{
   height: 50px;
   width: 290px;
-  font-size: .7em;
+  font-size: 1.2em;
+  margin-top: 15px;
+  border-radius: 15px;
 }
 
 button{
@@ -141,6 +143,15 @@ button{
   color: white;
   width:100;
 }
+.updatebutton{
+  background: #F8C315;
+  color: black;
+  border-radius: 15px;
+  height: 40px;
+  font-size: 1em;
+  width: 150px;
+  margin-top: 15px;
+}
 .single{
   margin: 15px;
   padding: 35px;
@@ -173,6 +184,7 @@ button{
   display: flex;
   justify-content: space-around;
   align-items: stretch;
+  margin-top: 15px;
 }
 .create, .deleteall {
 background: purple;

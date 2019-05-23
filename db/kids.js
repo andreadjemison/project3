@@ -1,4 +1,7 @@
-let Kids = require('../models/Kid.js')
+require('dotenv').config()
+const mongoose = require('mongoose')
+mongoose.connect(process.env.MONGO_URI)
+const Kids = require('../models/Kid.js')
 
 
 Kids.deleteMany()

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-// import cart from '../img/shopping.png'
 import logo from '../img/logo.png'
 import '../App.css'
 
@@ -24,10 +23,6 @@ render(){
         <Link to="/api/v1/kids" id="navlink">
         Kids Section
         </Link>
-
-        {/* <Link to="/api/v1/books/cart" id="navlink"> */}
-        {/* <img src={cart} alt="" />
-        </Link> */}
     </div>
     )
 }

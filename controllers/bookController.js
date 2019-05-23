@@ -5,7 +5,8 @@ const bookController = {
         try {
             const books = await Book.find()
             res.json(books)
-        } catch (err) {
+        } 
+        catch (err) {
             console.log(err)
         }
     },
@@ -13,8 +14,9 @@ const bookController = {
         try {
             const id = req.params.id
             const book = await Book.findById(id)
-            res.send(book)
-        } catch (err) {
+            res.json(book)
+        } 
+        catch (err) {
             console.log(err)
             res.json(err)
         }
@@ -33,10 +35,11 @@ const bookController = {
     },
     update: async (req, res) => {
         try {
+          console.log()
           const bookid = req.params.id
           const updatedbook = req.body
-          const savedbook = await Book.findByIdAndUpdate(bookid, updatedbook, {new: true})
-          res.json(savedbook)
+          const updatebook = await Book.findByIdAndUpdate(bookid, updatedbook, {new: true})
+          res.send(updatebook)
         }
         catch (err) {
           console.log(err)

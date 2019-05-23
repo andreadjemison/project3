@@ -15,7 +15,6 @@ class App extends Component {
       <Router>
         <Nav />
         <Switch>
-          {/* <Redirect from="/" to="/api/v1/" /> */}
           <Route exact path="/api/v1/" component={Home} />
           <Route exact path="/api/v1/books" component={Books} />
           <Route path="/api/v1/books/:id" component={Book} />

@@ -1,4 +1,7 @@
-let Books = require('../models/Book.js')
+require('dotenv').config()
+const mongoose = require('mongoose')
+mongoose.connect(process.env.MONGO_URI)
+const Books = require('../models/Book.js')
 
 
 Books.deleteMany()
