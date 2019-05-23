@@ -40,19 +40,20 @@ class Book extends Component {
         this.setState({ Book: cloneBook })
     }
 
-    updateBook = (e, book) => {
+    updateBook = (e) => {
         e.preventDefault()
         return axios.put(`/api/v1/books/${this.props.match.params.id}`,
-        {book:{
-            name: this.state.book.name,
-            description: this.state.book.description,
-            img: this.state.book.img,
-            author: this.state.book.author,
-            price: this.state.book.price
-        }}, book)
+         {
+            name: this.state.Book.name,
+            description: this.state.Book.description,
+            img: this.state.Book.img,
+            author: this.state.Book.author,
+            price: this.state.Book.price
+        }
+        )
             .then(res => {
-                this.setState({ book: res.data, isEditFormDisplayed: false })
-                console.log(res)
+                this.setState({ Book: res.data, isEditFormDisplayed: false, redirectToHome: true, })
+                console.log({Book: res.data})
             })
     }
 
@@ -69,7 +70,6 @@ class Book extends Component {
     }
 
     render() {
-        // console.log(this.state)
         if (this.state.redirectToHome) {
             return (<Redirect to="/api/v1/books/" />)
         }
@@ -84,7 +84,7 @@ class Book extends Component {
                 </div>
 
                 {this.state.isEditFormDisplayed ?
-                    <form onSubmit={(e, book)=> this.updateBook(e, book)} className="color">
+                    <form onSubmit={this.updateBook} className="color">
 
                         <div>
                             <label htmlFor="name">Name</label>
@@ -139,7 +139,6 @@ class Book extends Component {
                         className="updatebutton"
                         type="submit" 
                         value="Update Book" 
-                        onChange={(e) => this.handleChange(e)}
                          />
                     </form>
                     : null}
